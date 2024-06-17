@@ -14,7 +14,7 @@ type Props = {
 const CheckoutButton = ({onCheckOut,isLoading,disabled}:Props) => {
     const {pathname} = useLocation()
     const {isAuthenticated,loginWithRedirect} = useAuth0()
-    const {FetchUser,isLoading:UserLoading} = useGetUserRequest()
+    const {isLoading:UserLoading} = useGetUserRequest()
     const onLogin = async ()=>{
         await loginWithRedirect({
            appState:{
