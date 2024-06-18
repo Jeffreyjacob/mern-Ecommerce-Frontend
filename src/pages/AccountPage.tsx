@@ -1,5 +1,6 @@
 import UserProfileForm from "@/Form/UserProfileForm"
 import { useUpdateUserRequest } from "@/api/userApi"
+import ClientOrder from "@/components/shared/ClientOrder"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronRight } from "lucide-react"
 
@@ -27,7 +28,9 @@ const AccountPage = () => {
                     <TabsContent value="account" className="mt-10">
                         <UserProfileForm onSaVe={updateuser} isloading={updateLoading} />
                     </TabsContent>
-                    <TabsContent value="orders">Change your password here.</TabsContent>
+                    <TabsContent value="orders">
+                        <ClientOrder/>
+                    </TabsContent>
                     <TabsContent value="wishlist">wishlist content</TabsContent>
                 </Tabs>
             </div>

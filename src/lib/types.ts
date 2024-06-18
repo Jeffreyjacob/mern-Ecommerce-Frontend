@@ -54,3 +54,25 @@ export type CreateCheckoutRequest = {
          city: string
      },
 }
+
+export type order = {
+    user:string,
+    deliveryDetails:{
+    email:string,
+    name:string,
+    addressLine1:string,
+    city:string
+ },
+ cartItems:[
+    {
+       id:string,
+       title:string,
+       quantity:string,
+       imageUrl:string,
+       price:string
+    }
+ ],
+ totalAmount:number,
+ status:string
+ createdAt:string
+}

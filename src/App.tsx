@@ -7,6 +7,7 @@ import AdminPage from "./pages/AdminPage"
 import DetailPage from "./pages/DetailPage"
 import ProtectedRoute from "./auth/ProtectedRoute"
 import CartPage from "./pages/CartPage"
+import AfterPaymentPage from "./pages/AfterPaymentPage"
 
 
 function App() {
@@ -32,6 +33,11 @@ function App() {
       <Route path="/dashboard" element={<Layout FooterColor={true}>
         <AdminPage/>
       </Layout>}/>
+      <Route path="/afterPayment" element={
+        <Layout FooterColor={true}>
+          <AfterPaymentPage/>
+        </Layout>
+      }/>
       </Route>
 
     </Routes>
