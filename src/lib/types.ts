@@ -39,3 +39,18 @@ export type Cart = {
     cart:AddCart[]
 }
 
+export type CreateCheckoutRequest = {
+    cartItem:{
+        id:string,
+        title:string,
+        quantity:string,
+        imageUrl:string,
+        price:string
+     }[];
+     deliveryDetails: {
+         email: string;
+         name: string;
+         addressLine1: string;
+         city: string
+     },
+}
