@@ -1,13 +1,14 @@
 import { useGetProductbyId, useGetRelatedProduct } from "@/api/productApi"
 import ProductCard from "@/components/shared/ProductCard"
 import QuantityCard from "@/components/shared/QuantityCard"
+import WishlistButton from "@/components/shared/WishlistButton"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { product, productData } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { addCartAction } from "@/redux/feature/CartSlice"
-import { ChevronRight, Heart, Share2, Star } from "lucide-react"
+import { ChevronRight, Share2, Star } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -55,9 +56,10 @@ const DetailPage = () => {
         colors: []
 })
     useEffect(() => {
-        setProductDetail(fetchProductById)
+       
         setSimilarProduct(fetchRelatedProduct)
         if(fetchProductById){
+            setProductDetail(fetchProductById)
             setAddCart((prevState) => ({
                 ...prevState,
                 title: fetchProductById.title,
@@ -98,7 +100,6 @@ const DetailPage = () => {
             }))
         }
     }
-    console.log(addCart)
     const AddCartHandle = ()=>{
        dispatch(addCartAction(addCart))
        toast.success("Added to Cart")
@@ -214,9 +215,7 @@ const DetailPage = () => {
                                <Button className=" bg-Neutral-B900" onClick={AddCartHandle}>
                                     Add to Cart
                                 </Button>
-                                <Button variant="outline">
-                                    <Heart className="w-5 h-6 text-Neutral-B500" />
-                                </Button>
+                               <WishlistButton product={addCart} />
                                </div>
 
                             </div>

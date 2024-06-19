@@ -76,3 +76,20 @@ export type order = {
  status:string
  createdAt:string
 }
+
+export type CreateWishlistRequest = {
+    title:string,
+    price:number,
+    Id:string,
+    imageUrl:string
+}
+
+export type Wishlist = {
+    _id:string,
+    title:string,
+    price:number,
+    Id:string,
+    imageUrl:string,
+    user:string,
+    createAt:string
+}

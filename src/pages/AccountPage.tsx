@@ -1,6 +1,7 @@
 import UserProfileForm from "@/Form/UserProfileForm"
 import { useUpdateUserRequest } from "@/api/userApi"
 import ClientOrder from "@/components/shared/ClientOrder"
+import WishlistContent from "@/components/shared/WishlistContent"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronRight } from "lucide-react"
 
@@ -31,7 +32,9 @@ const AccountPage = () => {
                     <TabsContent value="orders">
                         <ClientOrder/>
                     </TabsContent>
-                    <TabsContent value="wishlist">wishlist content</TabsContent>
+                    <TabsContent value="wishlist">
+                        <WishlistContent/>
+                    </TabsContent>
                 </Tabs>
             </div>
         </div>
