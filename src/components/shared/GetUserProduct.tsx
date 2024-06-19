@@ -9,13 +9,14 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Input } from "../ui/input";
-import { useGetProductByUser } from "@/api/adminProduct";
+import { useDeleteProductByUser, useGetProductByUser } from "@/api/adminProduct";
 import { useEffect, useState } from "react";
 import { product } from "@/lib/types";
-import { ArrowUpDown, Ellipsis, Trash } from "lucide-react";
+import { ArrowUpDown, Ellipsis} from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import PaginationSelector from "./PaginationSelector";
 import { Skeleton } from "../ui/skeleton";
+import ProductDeleteButton from "./ProductDeleteButton";
 
 
 export type AdminSearchState = {
@@ -30,6 +31,7 @@ const GetUserProduct = () => {
         page: 1
     })
     const { fetchProductByUser, isLoading } = useGetProductByUser(searchState);
+    const {deleteProduct} = useDeleteProductByUser()
     const [productData, setProductData] = useState<product[]>()
 
     useEffect(() => {
@@ -51,6 +53,14 @@ const GetUserProduct = () => {
             ...prevState,
             page
         }))
+    }
+
+    const deleteProductHandler = async (id:string)=>{
+       setProductData((prevState)=>{
+        const updateItem = prevState?.filter((product)=>product._id !==id)
+        return updateItem
+       })
+       await deleteProduct(id)
     }
     return (
         <Card className="h-full">
@@ -114,7 +124,7 @@ const GetUserProduct = () => {
                                                             <Ellipsis className="w-5 h-5" />
                                                         </PopoverTrigger>
                                                         <PopoverContent className="w-fit">
-                                                            <Trash className=" text-red-500" />
+                                                          <ProductDeleteButton onDelete={deleteProductHandler} product={product}/>
                                                         </PopoverContent>
                                                     </Popover>
                                                 </TableCell>

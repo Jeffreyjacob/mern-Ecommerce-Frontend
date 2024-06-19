@@ -54,3 +54,29 @@ export const useGetProductByUser = (SearchState:AdminSearchState)=>{
      const {data:fetchProductByUser,isLoading} = useQuery(["fetchProductbyuser",SearchState],getProductbyuser)
      return {fetchProductByUser,isLoading}
 }
+
+export const useDeleteProductByUser = ()=>{
+    const {getAccessTokenSilently} = useAuth0()
+    const deleteProductByUser = async (id:string)=>{
+       const accessToken = await getAccessTokenSilently()
+       const response = await fetch(`${API_BASE_URL}/api/admin/product/delete?id=${id}`,{
+            method:"DELETE",
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+       })
+       if(!response.ok){
+        throw new Error("Fail to delete Product")
+       }
+       return response.json()
+    }
+    const {mutateAsync:deleteProduct} = useMutation(deleteProductByUser,{
+        onSuccess:()=>{
+            toast.success("Product Deleted!")
+        },
+        onError:()=>{
+            toast.error("Unable to Delete Product!")
+        }
+    })
+    return {deleteProduct}
+}
