@@ -41,6 +41,9 @@ const NavBar = () => {
                             <span className=' text-Neutral-B300 font-medium'>Search here</span>
                         </div>
                     </div>
+                     <div className='flex lg:hidden'>
+                        <Search className='w-5 h-5 text-Neutral-B300' onClick={()=>navigate("/search")}/>
+                     </div>
                     <ShoppingCart className='w-5 h-5 text-Neutral-B300' onClick={() => navigate("/cart")} />
                     <div className='hidden lg:flex'>
                         {

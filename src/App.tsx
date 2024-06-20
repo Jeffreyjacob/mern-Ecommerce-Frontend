@@ -26,7 +26,7 @@ function App() {
       <Route path="/cart" element={<Layout FooterColor={true}>
         <CartPage/>
       </Layout>}/>
-      <Route path="search" element={<Layout FooterColor={false} newsLetter={true}>
+      <Route path="/search" element={<Layout FooterColor={false} newsLetter={true}>
         <SearchPage/>
       </Layout>}/>
 
