@@ -9,12 +9,14 @@ import ProtectedRoute from "./auth/ProtectedRoute"
 import CartPage from "./pages/CartPage"
 import AfterPaymentPage from "./pages/AfterPaymentPage"
 import SearchPage from "./pages/SearchPage"
+import ScrolltoTop from "./components/shared/ScrolltoTop"
 
 
 function App() {
 
 
   return (
+    <ScrolltoTop>
     <Routes>
       <Route path="/" element={<Layout FooterColor={false} newsLetter={true}>
         <HomePage/>
@@ -43,8 +45,8 @@ function App() {
         </Layout>
       }/>
       </Route>
-
     </Routes>
+    </ScrolltoTop>
   )
 }
 
