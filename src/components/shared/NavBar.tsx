@@ -1,8 +1,7 @@
 import LogoImage from '@/assets/Logomark.png';
 import NavLinks from './NavLinks';
-import { ShoppingCart } from 'lucide-react';
+import { Search, ShoppingCart } from 'lucide-react';
 import { Button } from '../ui/button';
-import SearchBar from './SearchBar';
 import MobileNav from './MobileNav';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -37,9 +36,12 @@ const NavBar = () => {
                 </div>
                 <div className='flex lg:gap-10 gap-4 items-center '>
                     <div className='hidden lg:block'>
-                        <SearchBar />
+                        <div className="flex gap-2 items-center border-[1px] border-Neutral-B100 w-[250px] h-[50px] rounded-lg p-1 px-3" onClick={()=>navigate("/search")}>
+                            <Search className="w-5 h-5 text-Neutral-B300" />
+                            <span className=' text-Neutral-B300 font-medium'>Search here</span>
+                        </div>
                     </div>
-                    <ShoppingCart className='w-5 h-5 text-Neutral-B300' onClick={()=>navigate("/cart")} />
+                    <ShoppingCart className='w-5 h-5 text-Neutral-B300' onClick={() => navigate("/cart")} />
                     <div className='hidden lg:flex'>
                         {
                             isAuthenticated ? (

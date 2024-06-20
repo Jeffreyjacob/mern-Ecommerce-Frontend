@@ -1,4 +1,5 @@
 import { product, productData } from "@/lib/types"
+import { SearchProductType } from "@/pages/SearchPage"
 import { useQuery } from "react-query"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
@@ -50,4 +51,24 @@ export const useGetRelatedProduct = (id?:string)=>{
       enabled:!!id
     })
     return{fetchRelatedProduct,isLoading}
+}
+
+export const useSearchProductRequest = (productSearch:SearchProductType)=>{
+   const params = new URLSearchParams()
+   params.set("searchQuery",productSearch.searchQuery)
+   params.set("category",productSearch.category)
+   params.set("size",productSearch.size)
+   params.set("price",productSearch.price.toString())
+   params.set("page",productSearch.page.toString())
+      const searchProduct = async ():Promise<productData>=>{
+      const response = await fetch (`${API_BASE_URL}/api/product/search?${params.toString()}`,{
+         method:"GET"
+      })
+      if(!response.ok){
+       throw new Error("Faild to featch product")
+      }
+      return response.json()
+   }
+   const {data:SearchProduct,isLoading} = useQuery(["searchProduct",productSearch],searchProduct)
+   return {SearchProduct,isLoading}
 }

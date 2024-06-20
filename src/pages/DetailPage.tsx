@@ -63,7 +63,7 @@ const DetailPage = () => {
             setAddCart((prevState) => ({
                 ...prevState,
                 title: fetchProductById.title,
-                price: parseInt(fetchProductById.price),
+                price: fetchProductById.price,
                 imageUrl: fetchProductById.imageUrl,
                 id: fetchProductById._id
     

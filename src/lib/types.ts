@@ -14,7 +14,7 @@ export type product = {
     _id:string
     user:string,
     title:string,
-    price:string,
+    price:number,
     category:string,
     description:string,
     avaliableQuantity:string,
@@ -28,7 +28,7 @@ export type product = {
 export type productData = {
     data:product[],
     pagination:{
-        total:number,
+        totalProduct:number,
         page:number,
         pages:number
     }

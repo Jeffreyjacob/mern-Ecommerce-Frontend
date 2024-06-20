@@ -8,6 +8,7 @@ import DetailPage from "./pages/DetailPage"
 import ProtectedRoute from "./auth/ProtectedRoute"
 import CartPage from "./pages/CartPage"
 import AfterPaymentPage from "./pages/AfterPaymentPage"
+import SearchPage from "./pages/SearchPage"
 
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
       <Route path="/authCallback" element={<Auth0Callback/>}/>
       <Route path="/cart" element={<Layout FooterColor={true}>
         <CartPage/>
+      </Layout>}/>
+      <Route path="search" element={<Layout FooterColor={false} newsLetter={true}>
+        <SearchPage/>
       </Layout>}/>
 
       <Route element={<ProtectedRoute/>}>
