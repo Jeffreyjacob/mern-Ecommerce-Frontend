@@ -160,7 +160,7 @@ const SearchPage = () => {
                                 </div>
                             )
                         }
-                        <div>
+                        <div className="flex w-full">
                             {
                                 isLoading ? (
                                     <div className="grid md:grid-cols-2 lg:grid-cols-3 w-full gap-8 justify-center">
