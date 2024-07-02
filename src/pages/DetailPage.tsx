@@ -42,7 +42,7 @@ const sizes = [
 const DetailPage = () => {
     const { id} = useParams()
     const dispatch = useDispatch()
-    const { fetchProductById, isLoading } = useGetProductbyId(id)
+    const { fetchProductById, isLoading,refetch,isFetching} = useGetProductbyId(id)
     const { fetchRelatedProduct, isLoading: RelatedProductLoading } = useGetRelatedProduct(id)
     const [productDetail, setProductDetail] = useState<product>()
     const [similarProduct, setSimilarProduct] = useState<productData>()
@@ -58,6 +58,7 @@ const DetailPage = () => {
     useEffect(() => {
        
         setSimilarProduct(fetchRelatedProduct)
+         refetch()
         if(fetchProductById){
             setProductDetail(fetchProductById)
             setAddCart((prevState) => ({
@@ -69,7 +70,7 @@ const DetailPage = () => {
     
             }))
         }
-    }, [id, fetchProductById, fetchRelatedProduct])
+    }, [id, fetchProductById, fetchRelatedProduct,refetch])
 
     const setColorChange = (color: string) => {
         setAddCart((prevState) => ({
@@ -107,7 +108,7 @@ const DetailPage = () => {
     return (
         <div>
             {
-                isLoading ? (
+                isLoading || isFetching ? (
                     <div className="container w-full max-w-5xl mb-20 h-full py-10">
                         <div className="flex flex-col lg:flex-row w-full h-full gap-10">
                             <div className="flex w-full lg:w-1/2">
@@ -245,7 +246,7 @@ const DetailPage = () => {
                                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
                                             {
                                                 similarProduct?.data.slice(0, 3).map((product) => (
-                                                    <ProductCard product={product} reload />
+                                                    <ProductCard product={product} />
                                                 ))
                                             }
                                         </div>

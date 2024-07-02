@@ -31,10 +31,10 @@ export const useGetProductbyId = (id?:string)=>{
        }
        return response.json()
    }
-   const {data:fetchProductById,isLoading} = useQuery("fetchProductById",getProductbyId,{
+   const {data:fetchProductById,isLoading,refetch,isFetching} = useQuery("fetchProductById",getProductbyId,{
       enabled:!!id
    })
-   return {fetchProductById,isLoading}
+   return {fetchProductById,isLoading,refetch,isFetching}
 }
 
 export const useGetRelatedProduct = (id?:string)=>{

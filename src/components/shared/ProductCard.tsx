@@ -4,14 +4,12 @@ import { useNavigate } from "react-router-dom"
 
 type Props = {
     product: product,
-    reload?:boolean
 }
 
-const ProductCard = ({ product,reload }: Props) => {
+const ProductCard = ({ product }: Props) => {
     const navigate = useNavigate()
     const handleCheck = ()=>{
       navigate(`/detail-page/${product._id}`)
-      reload && location.reload()
     }
     return (
         <div>
